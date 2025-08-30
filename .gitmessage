@@ -1,0 +1,11 @@
+# Write commit messages in concise English.
+#
+# Summary (first line):
+# - Keep it short (<= 50 chars), imperative mood (e.g., "Fix bug", not "Fixed bug").
+# - Do not end with a period.
+#
+# Body (optional, after a blank line):
+# - Explain the what and why, not the how.
+# - Wrap at ~72 characters per line.
+# - Reference issues/PRs when relevant (e.g., "Closes #123").
+
