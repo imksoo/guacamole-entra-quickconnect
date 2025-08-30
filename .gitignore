@@ -1,0 +1,30 @@
+# Environment files (keep samples)
+.env
+.env.*
+!.env.example
+!.env.sample
+!*.sample
+
+# Docker Compose local overrides
+compose.override.yml
+docker-compose.override.yml
+
+# Logs and runtime artifacts
+*.log
+log/
+logs/
+tmp/
+.cache/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+*.code-workspace
+
+# Swap files
+*.swp
+*.swo
