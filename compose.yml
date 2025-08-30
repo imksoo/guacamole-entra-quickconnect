@@ -1,0 +1,22 @@
+services:
+  guacd:
+    image: guacamole/guacd:1.6.0
+    restart: unless-stopped
+
+  guacamole:
+    image: guacamole/guacamole:1.6.0
+    depends_on:
+      - guacd
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      GUACD_HOSTNAME: guacd
+      WEBAPP_CONTEXT: ROOT
+      OPENID_ENABLED: "true"
+      OPENID_AUTHORIZATION_ENDPOINT: "https://login.microsoftonline.com/${ENTRA_TENANT_ID}/oauth2/v2.0/authorize"
+      OPENID_JWKS_ENDPOINT: "https://login.microsoftonline.com/${ENTRA_TENANT_ID}/discovery/v2.0/keys"
+      OPENID_ISSUER: "https://login.microsoftonline.com/${ENTRA_TENANT_ID}/v2.0"
+      OPENID_CLIENT_ID: "${OPENID_CLIENT_ID}"
+      OPENID_REDIRECT_URI: "${OPENID_REDIRECT_URI}"
+      QUICKCONNECT_ENABLED: "true"
