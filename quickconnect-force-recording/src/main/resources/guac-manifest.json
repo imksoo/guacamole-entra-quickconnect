@@ -1,0 +1,6 @@
+{
+  "guacamoleVersion": "1.6.0",
+  "name": "QuickConnect Force Recording",
+  "namespace": "quickconnect-force-recording",
+  "js": [ "quickconnect-force-recording.js" ]
+}

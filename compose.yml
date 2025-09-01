@@ -2,6 +2,8 @@ services:
   guacd:
     image: guacamole/guacd:1.6.0
     restart: unless-stopped
+    volumes:
+      - ./recordings:/var/lib/guacamole/recordings
 
   guacamole:
     image: guacamole/guacamole:1.6.0
@@ -20,3 +22,8 @@ services:
       OPENID_CLIENT_ID: "${OPENID_CLIENT_ID}"
       OPENID_REDIRECT_URI: "${OPENID_REDIRECT_URI}"
       QUICKCONNECT_ENABLED: "true"
+      RECORDING_ENABLED: "true"
+      RECORDING_SEARCH_PATH: "/var/lib/guacamole/recordings"
+    volumes:
+      - ./recordings:/var/lib/guacamole/recordings
+      - ./quickconnect-force-recording/target/quickconnect-force-recording-1.6.0.jar:/etc/guacamole/extensions/quickconnect-force-recording-1.6.0.jar:ro

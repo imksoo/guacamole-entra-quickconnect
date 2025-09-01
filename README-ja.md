@@ -4,6 +4,15 @@
 
 英語版は `README.md` を参照してください。
 
+## 初回セットアップ
+- 自作拡張（JAR）のビルド:
+  - `mvn -f quickconnect-force-recording/pom.xml package`
+  - 生成物は `quickconnect-force-recording/target/quickconnect-force-recording-1.0.0.jar` で、`compose.yml` により Guacamole コンテナへマウントされます。
+- 録画保存先フォルダ（ホスト側、guacd が書き込み）を準備:
+  - `mkdir -p recordings/rec recordings/ts`
+  - `sudo chown -R $USER:$USER recordings`
+  - `sudo chmod -R 0777 recordings`（初回は緩めに。運用では適切な権限に調整してください）
+
 ## 同梱内容
 - `compose.yml`: Guacamole と guacd の構成。`WEBAPP_CONTEXT=ROOT`、QuickConnect 有効。
 - `.env`: Entra ID (Azure AD) の OpenID 値。`compose.yml` が参照します。

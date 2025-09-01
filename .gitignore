@@ -34,3 +34,6 @@ recordings/
 
 # Guacamole Extensions (jar)
 *.jar
+
+# quickconnect-force-recording target
+quickconnect-force-recording/target/

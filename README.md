@@ -4,6 +4,15 @@ This repository provides a minimal Apache Guacamole setup that enables QuickConn
 
 Japanese version: see `README-ja.md`.
 
+## First-time Setup
+- Build the custom extension JAR:
+  - `mvn -f quickconnect-force-recording/pom.xml package`
+  - This produces `quickconnect-force-recording/target/quickconnect-force-recording-1.0.0.jar` which is mounted into the Guacamole container by `compose.yml`.
+- Prepare the recording storage on the host (guacd writes here):
+  - `mkdir -p recordings/rec recordings/ts`
+  - `sudo chown -R $USER:$USER recordings`
+  - `sudo chmod -R 0777 recordings`  (relax for first run; tighten as needed in your environment)
+
 ## What’s Included
 - `compose.yml`: Guacamole + guacd via Docker Compose. `WEBAPP_CONTEXT=ROOT`, QuickConnect enabled.
 - `.env`: Entra ID (Azure AD) OpenID values consumed by `compose.yml`.
