@@ -31,3 +31,6 @@ Thumbs.db
 
 # Apache Guacamole recordings
 recordings/
+
+# Guacamole Extensions (jar)
+*.jar
