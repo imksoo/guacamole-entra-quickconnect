@@ -28,3 +28,6 @@ Thumbs.db
 # Swap files
 *.swp
 *.swo
+
+# Apache Guacamole recordings
+recordings/
