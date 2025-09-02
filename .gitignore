@@ -35,5 +35,8 @@ recordings/
 # Guacamole Extensions (jar)
 *.jar
 
-# quickconnect-force-recording target
+# quickconnect-recording-defaults build outputs
+quickconnect-recording-defaults/target/
+
+# Keep ignoring legacy module target (pre-rename), if present locally
 quickconnect-force-recording/target/
