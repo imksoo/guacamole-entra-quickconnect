@@ -37,6 +37,3 @@ recordings/
 
 # quickconnect-recording-defaults build outputs
 quickconnect-recording-defaults/target/
-
-# Keep ignoring legacy module target (pre-rename), if present locally
-quickconnect-force-recording/target/
