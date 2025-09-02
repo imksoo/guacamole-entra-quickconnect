@@ -9,7 +9,7 @@ import com.google.inject.servlet.ServletModule;
 public class QuickConnectServletModule extends ServletModule {
     @Override
     protected void configureServlets() {
-        System.out.println("[quickconnect-force-recording] Guice configureServlets invoked");
+        System.out.println("[quickconnect-recording-defaults] Guice configureServlets invoked");
         serve("/quickconnect/defaults").with(QuickConnectDefaultsServlet.class);
         serve("/quickconnect/ping").with(QuickConnectPingServlet.class);
     }

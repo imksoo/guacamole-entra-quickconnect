@@ -6,8 +6,8 @@
 
 ## 初回セットアップ
 - 自作拡張（JAR）のビルド:
-  - `mvn -f quickconnect-force-recording/pom.xml package`
-  - 生成物は `quickconnect-force-recording/target/quickconnect-recording-defaults-1.6.0.jar` で、`compose.yml` により Guacamole コンテナへマウントされます。
+- `mvn -f quickconnect-recording-defaults/pom.xml package`
+- 生成物は `quickconnect-recording-defaults/target/quickconnect-recording-defaults-1.6.0.jar` で、`compose.yml` により Guacamole コンテナへマウントされます。
 - 録画保存先フォルダ（ホスト側、guacd が書き込み）を準備:
   - `mkdir -p recordings/rec recordings/ts`
   - `sudo chown -R $USER:$USER recordings`
@@ -76,7 +76,7 @@ docker compose up -d
 
 ## QUICKCONNECT_DEFAULT_* 環境変数での QuickConnect 既定パラメータ
 
-`quickconnect-force-recording` 拡張は、サーバー（Guacamole コンテナ）の環境変数から QuickConnect に付与する既定パラメータを公開する REST API を提供します（Guacamole 1.6 以降の拡張 REST 配下）。
+`quickconnect-recording-defaults` 拡張は、サーバー（Guacamole コンテナ）の環境変数から QuickConnect に付与する既定パラメータを公開する REST API を提供します（Guacamole 1.6 以降の拡張 REST 配下）。
 
 - エンドポイント:
   - `http://localhost:8080/api/ext/quickconnect-recording-defaults/ping`

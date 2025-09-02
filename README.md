@@ -6,8 +6,8 @@ Japanese version: see `README-ja.md`.
 
 ## First-time Setup
 - Build the custom extension JAR:
-  - `mvn -f quickconnect-force-recording/pom.xml package`
-  - This produces `quickconnect-force-recording/target/quickconnect-recording-defaults-1.6.0.jar` which is mounted into the Guacamole container by `compose.yml`.
+- `mvn -f quickconnect-recording-defaults/pom.xml package`
+- This produces `quickconnect-recording-defaults/target/quickconnect-recording-defaults-1.6.0.jar` which is mounted into the Guacamole container by `compose.yml`.
 - Prepare the recording storage on the host (guacd writes here):
   - `mkdir -p recordings/rec recordings/ts`
   - `sudo chown -R $USER:$USER recordings`

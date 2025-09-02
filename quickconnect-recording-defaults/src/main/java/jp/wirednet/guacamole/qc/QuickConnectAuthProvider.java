@@ -17,7 +17,7 @@ import java.util.Collections;
 public class QuickConnectAuthProvider extends SimpleAuthenticationProvider {
 
     static {
-        System.out.println("[quickconnect-force-recording] QuickConnectAuthProvider class loaded");
+        System.out.println("[quickconnect-recording-defaults] QuickConnectAuthProvider class loaded");
     }
 
     @Override

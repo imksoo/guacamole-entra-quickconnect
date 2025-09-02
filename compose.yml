@@ -28,4 +28,4 @@ services:
       QUICKCONNECT_DEFAULT_ENABLE_FONT_SMOOTHING: "true"
     volumes:
       - ./recordings:/var/lib/guacamole/recordings
-      - ./quickconnect-force-recording/target/quickconnect-recording-defaults-1.6.0.jar:/etc/guacamole/extensions/quickconnect-recording-defaults-1.6.0.jar:ro
+      - ./quickconnect-recording-defaults/target/quickconnect-recording-defaults-1.6.0.jar:/etc/guacamole/extensions/quickconnect-recording-defaults-1.6.0.jar:ro
