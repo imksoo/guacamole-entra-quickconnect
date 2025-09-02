@@ -1,6 +1,9 @@
 {
   "guacamoleVersion": "1.6.0",
-  "name": "QuickConnect Force Recording",
-  "namespace": "quickconnect-force-recording",
-  "js": [ "quickconnect-force-recording.js" ]
+  "name": "QuickConnect Recording Defaults",
+  "namespace": "quickconnect-recording-defaults",
+  "js": [ "quickconnect-recording-defaults.js" ],
+  "authProviders": [
+    "jp.wirednet.guacamole.qc.QuickConnectAuthProvider"
+  ]
 }

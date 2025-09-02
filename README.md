@@ -7,7 +7,7 @@ Japanese version: see `README-ja.md`.
 ## First-time Setup
 - Build the custom extension JAR:
   - `mvn -f quickconnect-force-recording/pom.xml package`
-  - This produces `quickconnect-force-recording/target/quickconnect-force-recording-1.0.0.jar` which is mounted into the Guacamole container by `compose.yml`.
+  - This produces `quickconnect-force-recording/target/quickconnect-recording-defaults-1.6.0.jar` which is mounted into the Guacamole container by `compose.yml`.
 - Prepare the recording storage on the host (guacd writes here):
   - `mkdir -p recordings/rec recordings/ts`
   - `sudo chown -R $USER:$USER recordings`
@@ -71,6 +71,15 @@ Open the UI at `http://localhost:8080/` (root path because `WEBAPP_CONTEXT=ROOT`
   - SSH: `ssh://user@host:22`
   - RDP: `rdp://host:3389?username=user`
   - VNC: `vnc://host:5900`
+
+### QuickConnect Defaults REST
+- The custom extension exposes default parameters via Guacamole’s extension REST under:
+  - `http://localhost:8080/api/ext/quickconnect-recording-defaults/ping`
+  - `http://localhost:8080/api/ext/quickconnect-recording-defaults/defaults`
+- If your `WEBAPP_CONTEXT` is not `ROOT`, prefix with `/guacamole`.
+- Quick check:
+  - `curl -i http://localhost:8080/api/ext/quickconnect-recording-defaults/ping`
+  - `curl -s http://localhost:8080/api/ext/quickconnect-recording-defaults/defaults | jq`
 
 ## Troubleshooting
 - AADSTS700054: response_type 'id_token' is not enabled

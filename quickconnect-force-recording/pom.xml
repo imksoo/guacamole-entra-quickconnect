@@ -4,10 +4,16 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>jp.wirednet.guacamole.</groupId>
-  <artifactId>quickconnect-force-recording</artifactId>
+  <artifactId>quickconnect-recording-defaults</artifactId>
   <version>1.6.0</version>
-  <name>QuickConnect Force Recording</name>
+  <name>QuickConnect Recording Defaults</name>
   <packaging>jar</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
 
   <build>
     <resources>
@@ -16,5 +22,51 @@
         <filtering>false</filtering>
       </resource>
     </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
+
+  <dependencies>
+    <!-- Guacamole extension API -->
+    <dependency>
+      <groupId>org.apache.guacamole</groupId>
+      <artifactId>guacamole-ext</artifactId>
+      <version>1.6.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Servlet API for HttpServlet -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Guice Servlet for contributing servlets via modules (provided by webapp) -->
+    <dependency>
+      <groupId>com.google.inject.extensions</groupId>
+      <artifactId>guice-servlet</artifactId>
+      <version>4.2.3</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- JAX-RS API for REST resources (provided by Guacamole webapp) -->
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
+      <version>2.1.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
 </project>

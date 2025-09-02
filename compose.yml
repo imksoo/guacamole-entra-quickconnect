@@ -23,6 +23,9 @@ services:
       OPENID_REDIRECT_URI: "${OPENID_REDIRECT_URI}"
       QUICKCONNECT_ENABLED: "true"
       RECORDING_ENABLED: "true"
+      QUICKCONNECT_DEFAULT_SECURITY: "nla"
+      QUICKCONNECT_DEFAULT_IGNORE_CERT: "true"
+      QUICKCONNECT_DEFAULT_ENABLE_FONT_SMOOTHING: "true"
     volumes:
       - ./recordings:/var/lib/guacamole/recordings
-      - ./quickconnect-force-recording/target/quickconnect-force-recording-1.6.0.jar:/etc/guacamole/extensions/quickconnect-force-recording-1.6.0.jar:ro
+      - ./quickconnect-force-recording/target/quickconnect-recording-defaults-1.6.0.jar:/etc/guacamole/extensions/quickconnect-recording-defaults-1.6.0.jar:ro

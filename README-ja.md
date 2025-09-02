@@ -7,7 +7,7 @@
 ## 初回セットアップ
 - 自作拡張（JAR）のビルド:
   - `mvn -f quickconnect-force-recording/pom.xml package`
-  - 生成物は `quickconnect-force-recording/target/quickconnect-force-recording-1.0.0.jar` で、`compose.yml` により Guacamole コンテナへマウントされます。
+  - 生成物は `quickconnect-force-recording/target/quickconnect-recording-defaults-1.6.0.jar` で、`compose.yml` により Guacamole コンテナへマウントされます。
 - 録画保存先フォルダ（ホスト側、guacd が書き込み）を準備:
   - `mkdir -p recordings/rec recordings/ts`
   - `sudo chown -R $USER:$USER recordings`
@@ -73,3 +73,33 @@ docker compose up -d
 - AADSTS700054: response_type 'id_token' is not enabled
   - 上記の手順で「ID トークン」を有効化するか、認可コードフローを使用します。
 - サインインできない場合は、リダイレクト URI が完全一致しているか、テナント/クライアント ID が正しいかを確認してください。
+
+## QUICKCONNECT_DEFAULT_* 環境変数での QuickConnect 既定パラメータ
+
+`quickconnect-force-recording` 拡張は、サーバー（Guacamole コンテナ）の環境変数から QuickConnect に付与する既定パラメータを公開する REST API を提供します（Guacamole 1.6 以降の拡張 REST 配下）。
+
+- エンドポイント:
+  - `http://localhost:8080/api/ext/quickconnect-recording-defaults/ping`
+  - `http://localhost:8080/api/ext/quickconnect-recording-defaults/defaults`
+  - `WEBAPP_CONTEXT` が `ROOT` でない場合は `/guacamole` を先頭に付けてください。
+- プレフィックス: `QUICKCONNECT_DEFAULT_`（例: `QUICKCONNECT_DEFAULT_ENABLE_FONT_SMOOTHING=true`）
+- 変換規則: `QUICKCONNECT_DEFAULT_ENABLE_FONT_SMOOTHING` → `enable-font-smoothing`
+- 注意: `QUICKCONNECT_ENABLED=true`（QuickConnect 機能の有効化）とバッティングしないよう `QUICKCONNECT_DEFAULT_` を採用しています。
+
+- 既存の同名パラメータがある場合は上書きします（ユーザー入力や既定より優先します）
+
+Docker Compose の環境変数例（guacamole サービス）:
+
+```
+environment:
+  QUICKCONNECT_ENABLED: "true"          # QuickConnect 機能の有効化（従来どおり）
+  QUICKCONNECT_DEFAULT_ENABLE_FONT_SMOOTHING: "true"
+  QUICKCONNECT_DEFAULT_IGNORE_CERT: "true"
+  QUICKCONNECT_DEFAULT_SECURITY: "nla"
+```
+
+本拡張は REST API のみを使用します。静的 JSON（qc-env.json）や window 変数のフォールバックは廃止しました。
+
+### 動作確認コマンド
+- `curl -i http://localhost:8080/api/ext/quickconnect-recording-defaults/ping`
+- `curl -s http://localhost:8080/api/ext/quickconnect-recording-defaults/defaults | jq`
