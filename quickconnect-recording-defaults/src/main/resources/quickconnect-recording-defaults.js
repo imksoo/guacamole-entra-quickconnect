@@ -104,6 +104,17 @@
       return '';
     }
 
+    function hasPort(uri) {
+      try {
+        const u = new URL(uri, window.location.origin);
+        if (u.port) return true;
+      } catch (e) { }
+      if (/^[a-z][a-z0-9+.-]*:\/\/[^/?#:]+:\d+/.test(uri)) return true;
+      if (/^[^/?#:]+:\d+/.test(uri)) return true;
+      if (/[?&]port=\d+/i.test(uri)) return true;
+      return false;
+    }
+
     function sanitizeForName(s) {
       if (!s) return '';
       return s.toLowerCase().replace(/[^a-z0-9._-]+/g, '_').replace(/^_+|_+$/g, '');
@@ -122,6 +133,10 @@
       const stamp = serverStamp || formatStampISO();
       const proto = sanitizeForName(getProtocol(url) || 'conn');
       const host = sanitizeForName(getHost(url) || 'host');
+
+      if (proto === 'vnc' && !hasPort(url)) {
+        url = setParam(url, 'port', '5900');
+      }
 
       if ((proto === 'rdp' || proto === 'vnc') && serverDefaults) {
         if ('recording-path' in qcParams) url = setParam(url, 'recording-path', qcParams['recording-path']);
@@ -230,4 +245,3 @@
 
   }]);
 })();
-
